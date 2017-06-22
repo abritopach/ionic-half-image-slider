@@ -15,6 +15,9 @@ export class SliderComponent {
 
     @ViewChild('slider') slider: ElementRef;
     @ViewChild('cdhandle') cdhandle: ElementRef;
+    @ViewChild('cdresize') cdresize: ElementRef;
+    @ViewChild('imageoriginal') imageOriginal: ElementRef;
+    @ViewChild('imagemodified') imageModified: ElementRef;
     flagDrag: boolean = false;
     flagResize: boolean = false;
     dragWidth: number;
@@ -25,6 +28,7 @@ export class SliderComponent {
     maxLeft: number;
     leftValue: number;
     widthValue: string;
+    visibility: string = "visible";
 
     constructor() {
         console.log('Hello SliderComponent Component');
@@ -76,6 +80,10 @@ export class SliderComponent {
         this.widthValue = (this.leftValue + this.dragWidth/2 - this.containerOffset) * 100/this.containerWidth + '%';
         console.log("widthValue: " + this.widthValue);
 
+        // Update labels.
+        this.updateLabel(this.imageModified, this.cdresize, 'left');
+        this.updateLabel(this.imageOriginal, this.cdresize, 'right');
+
     }
 
     touchend(event) {
@@ -84,5 +92,32 @@ export class SliderComponent {
         this.flagResize = false;
     }
 
+    updateLabel(label, resizeElement, position) {
+        console.log(label);
+        console.log(resizeElement);
+        console.log("label.nativeElement.offsetLeft: " + label.nativeElement.offsetLeft);
+        console.log("label.nativeElement.offsetWidtht: " + label.nativeElement.offsetWidth);
+        console.log("resizeElement.nativeElement.offsetLeft: " + resizeElement.nativeElement.offsetLeft);
+        console.log("resizeElement.nativeElement.offsetWidth: " + resizeElement.nativeElement.offsetWidth);
+        if(position == 'left') {
+            if (label.nativeElement.offsetLeft + label.nativeElement.offsetWidth < resizeElement.nativeElement.offsetLeft + resizeElement.nativeElement.offsetWidth) {
+                this.visibility = "visible";
+            }
+            else {
+                this.visibility = "hidden";
+            }
+            //( label.offset().left + label.outerWidth() < resizeElement.offset().left + resizeElement.outerWidth() ) ? label.removeClass('is-hidden') : label.addClass('is-hidden') ;
+        }
+
+        else {
+            if (label.nativeElement.offsetLeft > resizeElement.nativeElement.offsetLeft + resizeElement.nativeElement.offsetWidth) {
+                this.visibility = "visible";
+            }
+            else {
+                this.visibility = "hidden";
+            }
+            //( label.offset().left > resizeElement.offset().left + resizeElement.outerWidth() ) ? label.removeClass('is-hidden') : label.addClass('is-hidden') ;
+        }
+    }
 
 }
