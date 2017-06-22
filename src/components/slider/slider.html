@@ -5,12 +5,12 @@
     <img src="assets/images/background2.jpg" alt="Original Image">
     <span class="cd-image-label prizm-logo" data-type="original"><img src="assets/images/logo-prizem.png" alt="#"></span>
 
-    <div class="cd-resize-img" [ngClass]="{'resizable': flagResize==true}">
+    <div class="cd-resize-img" [ngClass]="{'resizable': flagResize==true}" [ngStyle]="{'width': widthValue}">
       <img src="assets/images/background1.jpg" alt="Modified Image">
       <span class="cd-image-label" data-type="modified">Standard Lens</span>
     </div>
 
-    <span id="cd-handle" #cdhandle class="cd-handle" [ngClass]="{'draggable': flagDrag==true}">
+    <span id="cd-handle" #cdhandle class="cd-handle" [ngClass]="{'draggable': flagDrag==true}" [ngStyle]="{'left': widthValue}">
       <div class="cd-handle-center" (touchstart)="touchstart($event);"
            (touchmove)="touchmove($event)" (touchend)="touchend($event)"></div>
     </span>

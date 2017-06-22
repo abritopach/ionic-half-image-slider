@@ -76,7 +76,6 @@ export class SliderComponent {
         this.widthValue = (this.leftValue + this.dragWidth/2 - this.containerOffset) * 100/this.containerWidth + '%';
         console.log("widthValue: " + this.widthValue);
 
-
     }
 
     touchend(event) {
