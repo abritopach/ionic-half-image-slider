@@ -8,7 +8,10 @@ import { Component, ViewChild, ElementRef } from '@angular/core';
  */
 @Component({
     selector: 'slider',
-    templateUrl: 'slider.html'
+    templateUrl: 'slider.html',
+    host: {
+        '(window:resize)': 'onResize($event)'
+    }
 })
 
 export class SliderComponent {
@@ -28,10 +31,23 @@ export class SliderComponent {
     maxLeft: number;
     leftValue: number;
     widthValue: string;
-    visibility: string = "visible";
+    visibility1: string = "visible";
+    visibility2: string = "visible";
 
     constructor() {
         console.log('Hello SliderComponent Component');
+    }
+
+    mousedown(event) {
+        console.log("mousedown");
+    }
+
+    mousemove(event) {
+        console.log("mousemove");
+    }
+
+    mouseup(event) {
+        console.log("mouseup");
     }
 
     touchstart(event) {
@@ -93,31 +109,43 @@ export class SliderComponent {
     }
 
     updateLabel(label, resizeElement, position) {
+        /*
         console.log(label);
         console.log(resizeElement);
         console.log("label.nativeElement.offsetLeft: " + label.nativeElement.offsetLeft);
         console.log("label.nativeElement.offsetWidtht: " + label.nativeElement.offsetWidth);
         console.log("resizeElement.nativeElement.offsetLeft: " + resizeElement.nativeElement.offsetLeft);
         console.log("resizeElement.nativeElement.offsetWidth: " + resizeElement.nativeElement.offsetWidth);
+        */
         if(position == 'left') {
             if (label.nativeElement.offsetLeft + label.nativeElement.offsetWidth < resizeElement.nativeElement.offsetLeft + resizeElement.nativeElement.offsetWidth) {
-                this.visibility = "visible";
+                this.visibility2 = "visible";
             }
             else {
-                this.visibility = "hidden";
+                this.visibility2 = "hidden";
             }
-            //( label.offset().left + label.outerWidth() < resizeElement.offset().left + resizeElement.outerWidth() ) ? label.removeClass('is-hidden') : label.addClass('is-hidden') ;
         }
-
         else {
             if (label.nativeElement.offsetLeft > resizeElement.nativeElement.offsetLeft + resizeElement.nativeElement.offsetWidth) {
-                this.visibility = "visible";
+                this.visibility1 = "visible";
             }
             else {
-                this.visibility = "hidden";
+                this.visibility1 = "hidden";
             }
-            //( label.offset().left > resizeElement.offset().left + resizeElement.outerWidth() ) ? label.removeClass('is-hidden') : label.addClass('is-hidden') ;
         }
+    }
+
+    onResize(event) {
+        console.log("onResize");
+        this.updateLabel(this.imageModified, this.cdresize, 'left');
+        this.updateLabel(this.imageOriginal, this.cdresize, 'right');
+        /*
+         $('.cd-image-container').each(function(){
+         var actual = $(this);
+         updateLabel(actual.find('.cd-image-label[data-type="modified"]'), actual.find('.cd-resize-img'), 'left');
+         updateLabel(actual.find('.cd-image-label[data-type="original"]'), actual.find('.cd-resize-img'), 'right');
+         });
+        */
     }
 
 }
