@@ -2,11 +2,11 @@
 
 <div id="slider" #slider>
   <figure class="cd-image-container is-visible">
-    <img src="assets/images/background2.jpg" alt="Original Image">
+    <img [src]="originalImageSrc" alt="Original Image">
     <span #imageoriginal class="cd-image-label prizm-logo" data-type="original" [ngStyle]="{'visibility': visibility1}"><img src="assets/images/logo-prizem.png" alt="Original Image"></span>
 
     <div class="cd-resize-img" #cdresize [ngClass]="{'resizable': flagResize==true}" [ngStyle]="{'width': widthValue}">
-      <img src="assets/images/background1.jpg" alt="Modified Image">
+      <img [src]="modifiedImageSrc" alt="Modified Image">
       <span #imagemodified class="cd-image-label" data-type="modified" [ngStyle]="{'visibility': visibility2}">Standard Lens</span>
     </div>
 

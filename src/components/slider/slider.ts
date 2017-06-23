@@ -1,4 +1,4 @@
-import { Component, ViewChild, ElementRef } from '@angular/core';
+import { Component, ViewChild, ElementRef, Input } from '@angular/core';
 
 /**
  * Generated class for the SliderComponent component.
@@ -15,6 +15,19 @@ import { Component, ViewChild, ElementRef } from '@angular/core';
 })
 
 export class SliderComponent {
+
+    originalImageSrc: string;
+    modifiedImageSrc: string;
+
+    @Input()
+    set originalImage(originalImage: string) {
+        this.originalImageSrc = originalImage;
+    }
+
+    @Input()
+    set modifiedImage(modifiedImage: string) {
+        this.modifiedImageSrc = modifiedImage;
+    }
 
     @ViewChild('slider') slider: ElementRef;
     @ViewChild('cdhandle') cdhandle: ElementRef;
@@ -40,40 +53,20 @@ export class SliderComponent {
 
     mousedown(event) {
 
-        console.log(event);
-        console.log("mousedown");
-
         this.flagDrag = true;
         this.flagResize = true;
 
-
-        console.log(this.cdhandle);
-
         this.dragWidth = this.cdhandle.nativeElement.offsetWidth;
-        console.log("dragWidth: " + this.dragWidth);
-
         this.xPosition = this.cdhandle.nativeElement.offsetLeft + this.dragWidth - event.pageX;
-        console.log("xPositiom: " + this.xPosition);
-
-        console.log(this.slider);
-
         this.containerOffset = this.slider.nativeElement.offsetLeft;
-        console.log("containerOffset: " + this.containerOffset);
-
         this.containerWidth = this.slider.nativeElement.offsetWidth;
-        console.log("containerWidth: " + this.containerWidth);
 
         this.minLeft = this.containerOffset + 10;
-        console.log("minLeft: " + this.minLeft);
         this.maxLeft = this.containerOffset + this.containerWidth - this.dragWidth - 10;
-        console.log("maxLeft: " + this.maxLeft);
     }
 
     mousemove(event) {
-        console.log("mousemove");
-
         this.leftValue = event.pageX + this.xPosition - this.dragWidth;
-        console.log("leftValue: " + this.leftValue);
 
         // Constrain the draggable element to move inside his container.
         if (this.leftValue < this.minLeft) {
@@ -83,7 +76,6 @@ export class SliderComponent {
         }
 
         this.widthValue = (this.leftValue + this.dragWidth/2 - this.containerOffset) * 100/this.containerWidth + '%';
-        console.log("widthValue: " + this.widthValue);
 
         // Update labels.
         this.updateLabel(this.imageModified, this.cdresize, 'left');
@@ -95,40 +87,20 @@ export class SliderComponent {
     }
 
     touchstart(event) {
-        console.log("Touchstart");
         this.flagDrag = true;
         this.flagResize = true;
 
-
-        console.log(this.cdhandle);
-
         this.dragWidth = this.cdhandle.nativeElement.offsetWidth;
-        console.log("dragWidth: " + this.dragWidth);
-
-        console.log(event.touches[0].pageX);
-
         this.xPosition = this.cdhandle.nativeElement.offsetLeft + this.dragWidth - event.touches[0].pageX;
-        console.log("xPositiom: " + this.xPosition);
-
-        console.log(this.slider);
-
         this.containerOffset = this.slider.nativeElement.offsetLeft;
-        console.log("containerOffset: " + this.containerOffset);
-
         this.containerWidth = this.slider.nativeElement.offsetWidth;
-        console.log("containerWidth: " + this.containerWidth);
 
         this.minLeft = this.containerOffset + 10;
-        console.log("minLeft: " + this.minLeft);
         this.maxLeft = this.containerOffset + this.containerWidth - this.dragWidth - 10;
-        console.log("maxLeft: " + this.maxLeft);
     }
 
     touchmove(event) {
-        console.log("Touchmove");
-
         this.leftValue = event.touches[0].pageX + this.xPosition - this.dragWidth;
-        console.log("leftValue: " + this.leftValue);
 
         // Constrain the draggable element to move inside his container.
         if (this.leftValue < this.minLeft) {
@@ -138,7 +110,6 @@ export class SliderComponent {
         }
 
         this.widthValue = (this.leftValue + this.dragWidth/2 - this.containerOffset) * 100/this.containerWidth + '%';
-        console.log("widthValue: " + this.widthValue);
 
         // Update labels.
         this.updateLabel(this.imageModified, this.cdresize, 'left');
@@ -147,20 +118,11 @@ export class SliderComponent {
     }
 
     touchend(event) {
-        console.log("Touchend");
         this.flagDrag = false;
         this.flagResize = false;
     }
 
     updateLabel(label, resizeElement, position) {
-        /*
-        console.log(label);
-        console.log(resizeElement);
-        console.log("label.nativeElement.offsetLeft: " + label.nativeElement.offsetLeft);
-        console.log("label.nativeElement.offsetWidtht: " + label.nativeElement.offsetWidth);
-        console.log("resizeElement.nativeElement.offsetLeft: " + resizeElement.nativeElement.offsetLeft);
-        console.log("resizeElement.nativeElement.offsetWidth: " + resizeElement.nativeElement.offsetWidth);
-        */
         if(position == 'left') {
             if (label.nativeElement.offsetLeft + label.nativeElement.offsetWidth < resizeElement.nativeElement.offsetLeft + resizeElement.nativeElement.offsetWidth) {
                 this.visibility2 = "visible";
@@ -180,16 +142,8 @@ export class SliderComponent {
     }
 
     onResize(event) {
-        console.log("onResize");
         this.updateLabel(this.imageModified, this.cdresize, 'left');
         this.updateLabel(this.imageOriginal, this.cdresize, 'right');
-        /*
-         $('.cd-image-container').each(function(){
-         var actual = $(this);
-         updateLabel(actual.find('.cd-image-label[data-type="modified"]'), actual.find('.cd-resize-img'), 'left');
-         updateLabel(actual.find('.cd-image-label[data-type="original"]'), actual.find('.cd-resize-img'), 'right');
-         });
-        */
     }
 
 }
