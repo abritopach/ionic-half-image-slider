@@ -39,11 +39,55 @@ export class SliderComponent {
     }
 
     mousedown(event) {
+
+        console.log(event);
         console.log("mousedown");
+
+        this.flagDrag = true;
+        this.flagResize = true;
+
+
+        console.log(this.cdhandle);
+
+        this.dragWidth = this.cdhandle.nativeElement.offsetWidth;
+        console.log("dragWidth: " + this.dragWidth);
+
+        this.xPosition = this.cdhandle.nativeElement.offsetLeft + this.dragWidth - event.pageX;
+        console.log("xPositiom: " + this.xPosition);
+
+        console.log(this.slider);
+
+        this.containerOffset = this.slider.nativeElement.offsetLeft;
+        console.log("containerOffset: " + this.containerOffset);
+
+        this.containerWidth = this.slider.nativeElement.offsetWidth;
+        console.log("containerWidth: " + this.containerWidth);
+
+        this.minLeft = this.containerOffset + 10;
+        console.log("minLeft: " + this.minLeft);
+        this.maxLeft = this.containerOffset + this.containerWidth - this.dragWidth - 10;
+        console.log("maxLeft: " + this.maxLeft);
     }
 
     mousemove(event) {
         console.log("mousemove");
+
+        this.leftValue = event.pageX + this.xPosition - this.dragWidth;
+        console.log("leftValue: " + this.leftValue);
+
+        // Constrain the draggable element to move inside his container.
+        if (this.leftValue < this.minLeft) {
+            this.leftValue = this.minLeft;
+        } else if ( this.leftValue > this.maxLeft) {
+            this.leftValue = this.maxLeft;
+        }
+
+        this.widthValue = (this.leftValue + this.dragWidth/2 - this.containerOffset) * 100/this.containerWidth + '%';
+        console.log("widthValue: " + this.widthValue);
+
+        // Update labels.
+        this.updateLabel(this.imageModified, this.cdresize, 'left');
+        this.updateLabel(this.imageOriginal, this.cdresize, 'right');
     }
 
     mouseup(event) {
