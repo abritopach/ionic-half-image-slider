@@ -4,6 +4,8 @@ Sample project that shows an experimental half image slider in Ionic.
 
 * FrontEnd: Ionic App.
 
+![App example](readme_resources/half-image-slider.gif "App example")
+
 ## Running
 
 Before you go through this example, you should have at least a basic understanding of Ionic concepts. You must also already have Ionic installed on your machine.
