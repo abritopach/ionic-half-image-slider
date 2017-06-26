@@ -197,5 +197,12 @@ slider {
     }
   }
 
+  @media screen and (max-width: 25.875em) {
+    #slider {
+      width: 100%;
+      height: 100%;
+    }
+  }
+
 
 }
