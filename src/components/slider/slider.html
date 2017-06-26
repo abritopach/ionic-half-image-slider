@@ -12,8 +12,8 @@
 
     <span id="cd-handle" #cdhandle class="cd-handle" [ngClass]="{'draggable': flagDrag==true}" [ngStyle]="{'left': widthValue}">
       <div class="cd-handle-center" (touchstart)="touchstart($event);"
-           (touchmove)="touchmove($event);" (touchend)="touchend($event);" (mousedown)="mousedown($event);"
-              (mousemove)="mousemove($event);" (mouseup)="mouseup($event);"></div>
+           (touchmove)="touchmove($event);" (touchend)="touchend($event);" (mouseup)="mouseup($event);"
+           (mousedown)="mousedown($event);" (mousemove)="mousemove($event);"></div>
     </span>
   </figure>
 </div>

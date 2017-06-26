@@ -52,7 +52,6 @@ export class SliderComponent {
     }
 
     mousedown(event) {
-
         this.flagDrag = true;
         this.flagResize = true;
 
@@ -66,24 +65,29 @@ export class SliderComponent {
     }
 
     mousemove(event) {
-        this.leftValue = event.pageX + this.xPosition - this.dragWidth;
+        event.preventDefault();
 
-        // Constrain the draggable element to move inside his container.
-        if (this.leftValue < this.minLeft) {
-            this.leftValue = this.minLeft;
-        } else if ( this.leftValue > this.maxLeft) {
-            this.leftValue = this.maxLeft;
+        if (this.flagDrag) {
+            this.leftValue = event.pageX + this.xPosition - this.dragWidth;
+
+            // Constrain the draggable element to move inside his container.
+            if (this.leftValue < this.minLeft) {
+                this.leftValue = this.minLeft;
+            } else if ( this.leftValue > this.maxLeft) {
+                this.leftValue = this.maxLeft;
+            }
+
+            this.widthValue = (this.leftValue + this.dragWidth/2 - this.containerOffset) * 100/this.containerWidth + '%';
+
+            // Update labels.
+            this.updateLabel(this.image2Span, this.cdresize, 'left');
+            this.updateLabel(this.image1Span, this.cdresize, 'right');
         }
-
-        this.widthValue = (this.leftValue + this.dragWidth/2 - this.containerOffset) * 100/this.containerWidth + '%';
-
-        // Update labels.
-        this.updateLabel(this.image2Span, this.cdresize, 'left');
-        this.updateLabel(this.image1Span, this.cdresize, 'right');
     }
 
     mouseup(event) {
-        console.log("mouseup");
+        this.flagDrag = false;
+        this.flagResize = false;
     }
 
     touchstart(event) {
