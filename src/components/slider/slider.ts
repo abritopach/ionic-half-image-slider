@@ -16,24 +16,24 @@ import { Component, ViewChild, ElementRef, Input } from '@angular/core';
 
 export class SliderComponent {
 
-    originalImageSrc: string;
-    modifiedImageSrc: string;
+    image1Src: string;
+    image2Src: string;
 
     @Input()
-    set originalImage(originalImage: string) {
-        this.originalImageSrc = originalImage;
+    set image1(image1: string) {
+        this.image1Src = image1;
     }
 
     @Input()
-    set modifiedImage(modifiedImage: string) {
-        this.modifiedImageSrc = modifiedImage;
+    set image2(image2: string) {
+        this.image2Src = image2;
     }
 
     @ViewChild('slider') slider: ElementRef;
     @ViewChild('cdhandle') cdhandle: ElementRef;
     @ViewChild('cdresize') cdresize: ElementRef;
-    @ViewChild('imageoriginal') imageOriginal: ElementRef;
-    @ViewChild('imagemodified') imageModified: ElementRef;
+    @ViewChild('image1Span') image1Span: ElementRef;
+    @ViewChild('image2Span') image2Span: ElementRef;
     flagDrag: boolean = false;
     flagResize: boolean = false;
     dragWidth: number;
@@ -78,8 +78,8 @@ export class SliderComponent {
         this.widthValue = (this.leftValue + this.dragWidth/2 - this.containerOffset) * 100/this.containerWidth + '%';
 
         // Update labels.
-        this.updateLabel(this.imageModified, this.cdresize, 'left');
-        this.updateLabel(this.imageOriginal, this.cdresize, 'right');
+        this.updateLabel(this.image2Span, this.cdresize, 'left');
+        this.updateLabel(this.image1Span, this.cdresize, 'right');
     }
 
     mouseup(event) {
@@ -112,8 +112,8 @@ export class SliderComponent {
         this.widthValue = (this.leftValue + this.dragWidth/2 - this.containerOffset) * 100/this.containerWidth + '%';
 
         // Update labels.
-        this.updateLabel(this.imageModified, this.cdresize, 'left');
-        this.updateLabel(this.imageOriginal, this.cdresize, 'right');
+        this.updateLabel(this.image2Span, this.cdresize, 'left');
+        this.updateLabel(this.image1Span, this.cdresize, 'right');
 
     }
 
@@ -142,8 +142,8 @@ export class SliderComponent {
     }
 
     onResize(event) {
-        this.updateLabel(this.imageModified, this.cdresize, 'left');
-        this.updateLabel(this.imageOriginal, this.cdresize, 'right');
+        this.updateLabel(this.image2Span, this.cdresize, 'left');
+        this.updateLabel(this.image1Span, this.cdresize, 'right');
     }
 
 }

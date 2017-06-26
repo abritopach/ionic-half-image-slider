@@ -7,8 +7,8 @@ import { NavController } from 'ionic-angular';
 })
 export class HomePage {
 
-  originalImage: string = "assets/images/background6.jpg";
-  modifiedImage: string = "assets/images/background5.jpg";
+  image1: string = "assets/images/background6.jpg";
+  image2: string = "assets/images/background5.jpg";
 
   constructor(public navCtrl: NavController) {
 
