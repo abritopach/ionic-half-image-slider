@@ -20,6 +20,8 @@ export class SliderComponent {
     image2Src: string;
     label1Text: string;
     label2Text: string;
+    logo1Src: string;
+    logo2Src: string;
 
     @Input()
     set image1(image1: string) {
@@ -39,6 +41,16 @@ export class SliderComponent {
     @Input()
     set label2(label2: string) {
         this.label2Text = label2;
+    }
+
+    @Input()
+    set logo1(logo1: string) {
+        this.logo1Src = logo1;
+    }
+
+    @Input()
+    set logo2(logo2: string) {
+        this.logo2Src = logo2;
     }
 
 

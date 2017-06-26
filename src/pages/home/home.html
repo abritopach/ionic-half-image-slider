@@ -1,15 +1,19 @@
 <ion-header>
-    <ion-navbar>
+    <ion-navbar color="primary">
         <ion-title>
-            Ionic Blank
+            Half Image Slider
         </ion-title>
     </ion-navbar>
 </ion-header>
 
 <ion-content padding>
+    <ion-fab top right edge>
+        <button ion-fab mini (click)="getNextImages()" color="secondary"><ion-icon name="add"></ion-icon></button>
+    </ion-fab>
     <ion-row>
         <ion-col col-12>
-            <slider [image1]="image1" [image2]="image2" [label1]="label1" [label2]="label2"></slider>
+            <slider [image1]="image1" [image2]="image2" [label1]="label1" [label2]="label2"
+                    [logo1]="logo1" [logo2]="logo2"></slider>
         </ion-col>
     </ion-row>
 </ion-content>

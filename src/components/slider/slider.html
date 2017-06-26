@@ -3,11 +3,11 @@
 <div id="slider" #slider>
   <figure class="cd-image-container is-visible">
     <img [src]="image1Src" alt="Image 1">
-    <span #image1Span class="cd-image-label logo" [ngStyle]="{'visibility': visibility1}"><!--<img src="assets/images/logo-prizem.png" alt="Logo Image">-->{{label1Text}}</span>
+    <span #image1Span class="cd-image-label logo" [ngStyle]="{'visibility': visibility1}"><img [src]="logo1Src" *ngIf="logo1Src != ''" alt="Logo Image">{{label1Text}}</span>
 
     <div class="cd-resize-img" #cdresize [ngClass]="{'resizable': flagResize==true}" [ngStyle]="{'width': widthValue}">
       <img [src]="image2Src" alt="Image 2">
-      <span #image2Span class="cd-image-label" [ngStyle]="{'visibility': visibility2}">{{label2Text}}</span>
+      <span #image2Span class="cd-image-label" [ngStyle]="{'visibility': visibility2}"><img [src]="logo2Src" *ngIf="logo2Src != ''" alt="Logo Image">{{label2Text}}</span>
     </div>
 
     <span id="cd-handle" #cdhandle class="cd-handle" [ngClass]="{'draggable': flagDrag==true}" [ngStyle]="{'left': widthValue}">
