@@ -21,7 +21,6 @@ export class SliderComponent {
     @Input()
     set imagesData(images: Array<Object>) {
         this.data = images;
-        console.log(this.data);
     }
 
     @ViewChild('slider') slider: ElementRef;

@@ -19,7 +19,8 @@ export class HomePage {
                 label1: 'Summer',
                 label2: 'Winter',
                 logo1: '',
-                logo2: ''
+                logo2: '',
+                labelTextColor: 'black'
             },
             {
                 image1: 'assets/images/background4.jpg',
@@ -27,15 +28,17 @@ export class HomePage {
                 label1: 'Side',
                 label2: 'Front',
                 logo1: '',
-                logo2: ''
+                logo2: '',
+                labelTextColor: 'black'
             },
             {
-                image1: 'assets/images/background2.jpg',
-                image2: 'assets/images/background1.jpg',
+                image1: 'assets/images/background1.jpg',
+                image2: 'assets/images/background2.jpg',
                 label1: '',
-                label2: 'Standard Lens',
-                logo1: 'assets/images/logo.png',
-                logo2: ''
+                label2: 'Without Lens',
+                logo1: 'assets/images/glasses.png',
+                logo2: '',
+                labelTextColor: 'white'
             }
         ]
         this.getNextImages();
