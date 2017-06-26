@@ -16,43 +16,13 @@ import { Component, ViewChild, ElementRef, Input } from '@angular/core';
 
 export class SliderComponent {
 
-    image1Src: string;
-    image2Src: string;
-    label1Text: string;
-    label2Text: string;
-    logo1Src: string;
-    logo2Src: string;
+    data: any;
 
     @Input()
-    set image1(image1: string) {
-        this.image1Src = image1;
+    set imagesData(images: Array<Object>) {
+        this.data = images;
+        console.log(this.data);
     }
-
-    @Input()
-    set image2(image2: string) {
-        this.image2Src = image2;
-    }
-
-    @Input()
-    set label1(label1: string) {
-        this.label1Text = label1;
-    }
-
-    @Input()
-    set label2(label2: string) {
-        this.label2Text = label2;
-    }
-
-    @Input()
-    set logo1(logo1: string) {
-        this.logo1Src = logo1;
-    }
-
-    @Input()
-    set logo2(logo2: string) {
-        this.logo2Src = logo2;
-    }
-
 
     @ViewChild('slider') slider: ElementRef;
     @ViewChild('cdhandle') cdhandle: ElementRef;

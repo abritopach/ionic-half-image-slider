@@ -7,14 +7,8 @@ import { NavController } from 'ionic-angular';
 })
 export class HomePage {
 
-    image1: string = "";
-    image2: string = "";
-    label1: string = "";
-    label2: string = "";
-    logo1: string = "";
-    logo2: string = "";
-
     slides: any;
+    currentImages: any;
     currentSliderIndex: number = 0;
 
     constructor(public navCtrl: NavController) {
@@ -50,12 +44,7 @@ export class HomePage {
     getNextImages() {
         //console.log(this.currentSliderIndex);
         if (this.currentSliderIndex > this.slides.length - 1) this.currentSliderIndex = 0;
-        this.image1 = this.slides[this.currentSliderIndex].image1;
-        this.image2 = this.slides[this.currentSliderIndex].image2
-        this.label1 = this.slides[this.currentSliderIndex].label1;
-        this.label2 = this.slides[this.currentSliderIndex].label2;
-        this.logo1 = this.slides[this.currentSliderIndex].logo1;
-        this.logo2 = this.slides[this.currentSliderIndex].logo2;
+        this.currentImages = this.slides[this.currentSliderIndex];
         this.currentSliderIndex += 1;
     }
 
