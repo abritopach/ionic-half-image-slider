@@ -18,6 +18,8 @@ export class SliderComponent {
 
     image1Src: string;
     image2Src: string;
+    label1Text: string;
+    label2Text: string;
 
     @Input()
     set image1(image1: string) {
@@ -28,6 +30,17 @@ export class SliderComponent {
     set image2(image2: string) {
         this.image2Src = image2;
     }
+
+    @Input()
+    set label1(label1: string) {
+        this.label1Text = label1;
+    }
+
+    @Input()
+    set label2(label2: string) {
+        this.label2Text = label2;
+    }
+
 
     @ViewChild('slider') slider: ElementRef;
     @ViewChild('cdhandle') cdhandle: ElementRef;
